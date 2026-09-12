@@ -41,7 +41,7 @@ public class DollManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine("NewDoll");
+        StartCoroutine(NewDoll());
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class DollManager : MonoBehaviour
         
     }
 
-    public IEnumerable NewDoll()
+    public IEnumerator NewDoll()
     {
         if(currDoll)
         {
@@ -66,12 +66,12 @@ public class DollManager : MonoBehaviour
     IEnumerator MoveDollToPosition(Doll doll, float time)
     {
         Vector3 startPos = doll.transform.position;
-        float elapsedTime = 0f;
+        float elapsedTime = 0.0f;
 
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
-            doll.transform.position += Vector3.Lerp(startPos, dollEndPosition.position, elapsedTime/time);
+            doll.transform.position = Vector3.Lerp(startPos, dollStagingPosition.position, elapsedTime/time);
             yield return null;
         }
     }
@@ -86,8 +86,8 @@ public class DollManager : MonoBehaviour
         DollPart dollPart = part.GetComponent<DollPart>();
         if(dollPart.partType == DollPart.DollPartType.Head)
         {
-            Instantiate(part, currDoll.transform.position, Quaternion.identity, null);
-
+            GameObject head = Instantiate(part, currDoll.transform.position, Quaternion.identity, null);
+            currDoll.AttachPart(head.GetComponent<DollPart>());
 
         }
         else
@@ -108,55 +108,98 @@ public class DollManager : MonoBehaviour
 
     public void NextHead()
     {
-        dollHeadIndex++;
-        if (dollHeadIndex >= headParts.Count)
+        if (!lockState)
         {
-            dollHeadIndex = 0;
+            dollHeadIndex++;
+            if (dollHeadIndex >= headParts.Count)
+            {
+                dollHeadIndex = 0;
+            }
         }
     }
 
     public void PrevHead()
     {
-        dollHeadIndex--;
-        if (dollHeadIndex < 0)
+        if (!lockState)
         {
-            dollHeadIndex = headParts.Count - 1;
+            dollHeadIndex--;
+            if (dollHeadIndex < 0)
+            {
+                dollHeadIndex = headParts.Count - 1;
+            }
+        }
+    }
+
+    public void SpawnHead()
+    {
+        if(!lockState)
+        {
+            InstantiateParts(headParts[dollHeadIndex]);
         }
     }
 
     public void NextArm()
-    { 
-        dollArmIndex++;
-        if (dollArmIndex >= armParts.Count)
+    {
+        if (!lockState)
         {
-            dollArmIndex = 0;
+            dollArmIndex++;
+            if (dollArmIndex >= armParts.Count)
+            {
+                dollArmIndex = 0;
+            }
         }
     }
 
     public void PrevArm()
     {
-        dollArmIndex--;
-        if (dollArmIndex < 0)
+        if (!lockState)
         {
-            dollArmIndex = armParts.Count - 1;
+            dollArmIndex--;
+            if (dollArmIndex < 0)
+            {
+                dollArmIndex = armParts.Count - 1;
+            }
+        }
+    }
+
+    public void SpawnArms()
+    {
+        if (!lockState)
+        {
+            currDoll.DetachPart(DollPart.DollPartType.Arm);
+            InstantiateParts(armParts[dollArmIndex]);
         }
     }
 
     public void NextLeg()
     {
-        dollLegIndex++;
-        if (dollLegIndex >= legParts.Count)
+        if (!lockState)
         {
-            dollLegIndex = 0;
+            dollLegIndex++;
+            if (dollLegIndex >= legParts.Count)
+            {
+                dollLegIndex = 0;
+            }
         }
     }
 
-    public void PreLeg()
+    public void PrevLeg()
     {
-        dollLegIndex--;
-        if (dollLegIndex < 0)
+        if (!lockState)
         {
-            dollLegIndex = legParts.Count - 1;
+            dollLegIndex--;
+            if (dollLegIndex < 0)
+            {
+                dollLegIndex = legParts.Count - 1;
+            }
+        }
+    }
+
+    public void SpawnLegs()
+    {
+        if (!lockState)
+        {
+            InstantiateParts(legParts[dollLegIndex]);
         }
     }
 }

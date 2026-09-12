@@ -16,10 +16,10 @@ public class Doll : MonoBehaviour
     private int[] dollDescriptor = new int[10];
 
     private DollPart headPart;
-    private DollPart lArmPart;
-    private DollPart rArmPart;
-    private DollPart lLegPart;
-    private DollPart rLegPart;
+    private DollPart l_ArmPart;
+    private DollPart r_ArmPart;
+    private DollPart l_LegPart;
+    private DollPart r_LegPart;
 
     private void OnDrawGizmosSelected()
     {
@@ -47,6 +47,10 @@ public class Doll : MonoBehaviour
     {
         if(part.partType == DollPartType.Head)
         {
+            if(headPart)
+            {
+                Destroy(headPart.gameObject);
+            }
             headPart = part;
             part.transform.parent = headSocket;
             part.transform.localPosition = Vector3.zero;
@@ -55,13 +59,21 @@ public class Doll : MonoBehaviour
         {
             if (part.isLeft)
             {
-                lArmPart = part;
+                if (l_ArmPart)
+                {
+                    Destroy(l_ArmPart.gameObject);
+                }
+                l_ArmPart = part;
                 part.transform.parent = lArmSocket;
                 part.transform.localPosition = Vector3.zero;
             }
             else
             {
-                rArmPart = part;
+                if (r_ArmPart)
+                {
+                    Destroy(r_ArmPart.gameObject);
+                }
+                r_ArmPart = part;
                 part.transform.parent = rArmSocket;
                 part.transform.localPosition = Vector3.zero;
             }
@@ -70,18 +82,44 @@ public class Doll : MonoBehaviour
         {
             if (part.isLeft)
             {
-                lLegPart = part;
+                if (l_LegPart)
+                {
+                    Destroy(l_LegPart.gameObject);
+                }
+                l_LegPart = part;
                 part.transform.parent = lLegSocket;
                 part.transform.localPosition = Vector3.zero;
             }
             else
             {
-                rLegPart = part;
+                if (r_LegPart)
+                {
+                    Destroy(r_LegPart.gameObject);
+                }
+                r_LegPart = part;
                 part.transform.parent = rLegSocket;
                 part.transform.localPosition = Vector3.zero;
             }
         }
-    }    
+    }
+
+    public void DetachPart(DollPart.DollPartType partType)
+    {
+        switch (partType)
+        {
+            case DollPartType.Head:
+                Destroy(headPart);
+                break;
+            case DollPartType.Arm:
+                Destroy(l_ArmPart);
+                Destroy(r_ArmPart);
+                break;
+            case DollPartType.Leg:
+                Destroy(l_LegPart);
+                Destroy(r_LegPart);
+                break;
+        }
+    }
 
     public Transform GetSpawnTransform(DollPart part)
     {

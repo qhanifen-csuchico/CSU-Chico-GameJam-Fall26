@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1369174556609679014}
   - component: {fileID: 8691347469282819192}
   m_Layer: 0
-  m_Name: Doll_Part_Arm_Tenticle
+  m_Name: Doll_Part_Head_Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DollPart
   _isLeft: 0
-  partType: 2
+  partType: 0
   descriptor: 0
 --- !u!1 &5768453452180989615
 GameObject:
@@ -73,13 +73,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5768453452180989615}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.25744006, w: 0.9662943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.126314, y: 0.126314, z: 0.126314}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1369174556609679014}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -29.836}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2309612242270819432
 SpriteRenderer:
   serializedVersion: 3
@@ -127,9 +127,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8506426561614121159, guid: 677b3e9d0b9cb704a90ffcb5315459b0, type: 3}
+  m_Sprite: {fileID: -7684115777282552487, guid: e3835ff36c0c6c744926d9919cee0ac7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0

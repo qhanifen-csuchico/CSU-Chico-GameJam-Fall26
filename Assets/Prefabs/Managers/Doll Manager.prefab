@@ -44,3 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e790535e15831a468c04d3966b55092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DollManager
+  dollPrefabs: {fileID: 11400000, guid: 2504c6b2725415441ae2e573a3791dc7, type: 2}
+  dollStagingPosition: {fileID: 0}
+  dollSpawnPosition: {fileID: 0}
+  dollEndPosition: {fileID: 0}
+  dollDumpPosition: {fileID: 0}
+  currDoll: {fileID: 0}
+  prevDoll: {fileID: 0}
+  dollHeadIndex: 0
+  dollArmIndex: 0
+  dollLegIndex: 0

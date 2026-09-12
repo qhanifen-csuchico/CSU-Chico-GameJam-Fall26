@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1369174556609679014}
   - component: {fileID: 8691347469282819192}
   m_Layer: 0
-  m_Name: Doll_Part_Head_Normal
+  m_Name: Doll_Part_Arm_Tenticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.126314, y: 0.126314, z: 0.126314}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1369174556609679014}
@@ -127,11 +127,11 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -4783133577000962755, guid: 704443efcb5f9cd4cb35b664a6c94247, type: 3}
+  m_Sprite: {fileID: -4984020879473134763, guid: bbe5dd5d3d9aacd4c8f5f61f2a4da1f1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a138339e0c149254cb686c46476fb911, type: 3}
+  m_Name: DollPrefabCollection
+  m_EditorClassIdentifier: Assembly-CSharp::DollPrefabCollection
+  basePrefab: {fileID: 5195932099230778343, guid: a514110902d29e44cbcbe5981e6c2258, type: 3}
+  headPrefabs:
+  - {fileID: 4643899945520804295, guid: b790f4afd00009a44afcd4cc7d41143a, type: 3}
+  armPrefabs:
+  - {fileID: 4643899945520804295, guid: 5a90fe7486537c041aaceb037ca78746, type: 3}
+  - {fileID: 4643899945520804295, guid: 90671764d1312af46838782d8600ccda, type: 3}
+  legPrefabs:
+  - {fileID: 4643899945520804295, guid: bea09036f71484944a72e4fd2349502f, type: 3}

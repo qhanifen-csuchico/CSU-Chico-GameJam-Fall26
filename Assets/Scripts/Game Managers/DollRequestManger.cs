@@ -1,6 +1,4 @@
 using UnityEngine;
-using Unity.UI;
-using UnityEditor.PackageManager.Requests;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -60,7 +58,7 @@ public class DollRequestManger : MonoBehaviour
     public void GenerateNewRequest()
     {
         int randomIndex = (int)UnityEngine.Random.Range(0, dollRequests.Count);
-        currRequestList = dollRequests[randomIndex];        
+        currRequestList = dollRequests[randomIndex];
         for(int i=0; i < currRequestList.dollRequests.Length; i++)
         {            
             textFields[i].text = currRequestList.dollRequests[i].message;
@@ -96,7 +94,7 @@ public class DollRequestManger : MonoBehaviour
             }
 
             textFields[i].color = pass ? passColor : failColor;
-            passing = pass;
+            passing = passing && pass;
             
         }
 

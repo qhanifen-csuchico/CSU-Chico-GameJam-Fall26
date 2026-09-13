@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 using static UnityEngine.Rendering.DebugUI;
 
@@ -17,19 +16,19 @@ public class DollPart : MonoBehaviour, IDollPart
     [Flags]
     public enum DollPartDescriptor
     {
-        Normal      = 0,
-        Broken      = 1 << 0,
-        Robotic     = 1 << 1,
-        Animalistic = 1 << 2,
-        Aquatic     = 1 << 3,
-        Avian       = 1 << 4,
-        Insectoid   = 1 << 5,
-        Alien       = 1 << 6,
-        Mythical    = 1 << 7,
-        AllTerrain  = 1 << 8,
-        Wooden      = 1 << 9,
-        Metallic    = 1 << 10,
-        Organic     = 1 << 11
+        Normal                  = 0,
+        Broken                  = 1 << 0,
+        Robotic                 = 1 << 1,
+        Animalistic             = 1 << 2,
+        Aquatic                 = 1 << 3,
+        Avian                   = 1 << 4,
+        CanGrab                 = 1 << 5,
+        Mythical                = 1 << 6,
+        Strong                  = 1 << 7,
+        AllTerrain              = 1 << 8,
+        OneEye                  = 1 << 9,
+        BreatheUnderwater       = 1 << 10,
+        Fast                    = 1 << 11
     }
 
     [SerializeField]
@@ -109,10 +108,9 @@ public class DollPart : MonoBehaviour, IDollPart
 
     public void FlipSprite(bool flip)
     {
-        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        if (spriteRenderer != null)
+        if (flip)
         {
-            spriteRenderer.flipX = flip;
+            transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 }

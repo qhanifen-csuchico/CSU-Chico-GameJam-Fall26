@@ -13,7 +13,7 @@ public class Doll : MonoBehaviour
     public Transform lLegSocket;
     public Transform rLegSocket;
 
-    public int[] dollDescriptor = new int[10];
+    public int[] dollDescriptor;
 
     private DollPart headPart;
     private DollPart l_ArmPart;
@@ -29,6 +29,11 @@ public class Doll : MonoBehaviour
         Gizmos.DrawWireSphere(rArmSocket.position, socketRadius);
         Gizmos.DrawWireSphere(lLegSocket.position, socketRadius);
         Gizmos.DrawWireSphere(rLegSocket.position, socketRadius);
+    }
+
+    void Awake()
+    {
+        dollDescriptor = new int[Enum.GetNames(typeof(DollPartDescriptor)).Length];
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -130,45 +135,60 @@ public class Doll : MonoBehaviour
         }
     }
 
+    private int BitIndex(DollPartDescriptor flag)
+    {
+        int v = (int)flag;
+        if (v == 0) return -1;
+        int idx = 0;
+        while ((v & 1) == 0)
+        {
+            v >>= 1;
+            idx++;
+        }
+        return idx;
+    }
+
     public void AddDollDescriptor(DollPartDescriptor partDescriptor)
     {
-        int index = 0;
         foreach(DollPartDescriptor flag in Enum.GetValues(typeof(DollPartDescriptor)))
         {
             if (flag == DollPartDescriptor.Normal) continue; // Skip Normal descriptor
             if (partDescriptor.HasFlag(flag))
             {
-                dollDescriptor[index]++;
+                int idx = BitIndex(flag);
+                if (idx >= 0 && idx < dollDescriptor.Length)
+                    dollDescriptor[idx]++;
+                else
+                    Debug.LogError($"Descriptor index out of range for flag {flag} (bit {idx})");
             }
-            index++;
         }
     }
     public void SubtractDollDescriptor(DollPartDescriptor partDescriptor)
     {
-        int index = 0;
         foreach (DollPartDescriptor flag in Enum.GetValues(typeof(DollPartDescriptor)))
         {
             if (flag == DollPartDescriptor.Normal) continue; // Skip Normal descriptor
             if (partDescriptor.HasFlag(flag))
             {
-                dollDescriptor[index]--;
+                int idx = BitIndex(flag);
+                if (idx >= 0 && idx < dollDescriptor.Length)
+                    dollDescriptor[idx]--;
+                else
+                    Debug.LogError($"Descriptor index out of range for flag {flag} (bit {idx})");
             }
-            index++;
         }
     }
 
     // Create a bitmask by checking if any of the stored counts are greater than 1
     public DollPartDescriptor GetDescriptor()
     {
-        DollPartDescriptor descriptor = 0;
-        int index = 0;
-        foreach(int val in dollDescriptor)
+        DollPartDescriptor descriptor = 0;        
+        for(int i=0; i< dollDescriptor.Length; i++)
         {
-            if(val > 0)
+            if(dollDescriptor[i] > 0)
             {
-                descriptor |=  (DollPartDescriptor)(1 << index);
-            }
-            index++;
+                descriptor |=  (DollPartDescriptor)(1 << i);
+            }            
         }
         return descriptor;
     }

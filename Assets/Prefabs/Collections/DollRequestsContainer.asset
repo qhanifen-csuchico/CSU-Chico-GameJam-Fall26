@@ -23,3 +23,43 @@ MonoBehaviour:
     - message: Can Swim
       exclusion: 0
       request: 8
+  - dollRequests:
+    - message: One-Eye
+      exclusion: 0
+      request: 4
+    - message: Fast
+      exclusion: 0
+      request: 2048
+    - message: Not Aquatic
+      exclusion: 1
+      request: 8
+  - dollRequests:
+    - message: Can Breathe Underwater
+      exclusion: 0
+      request: 1024
+    - message: Fast
+      exclusion: 0
+      request: 2048
+    - message: Not Animalistic
+      exclusion: 1
+      request: 4
+  - dollRequests:
+    - message: Binocular
+      exclusion: 1
+      request: 512
+    - message: Robotic
+      exclusion: 0
+      request: 2
+    - message: Not Strong
+      exclusion: 1
+      request: 4
+  - dollRequests:
+    - message: Can Fly
+      exclusion: 0
+      request: 16
+    - message: All Terrain
+      exclusion: 0
+      request: 256
+    - message: Not Fast
+      exclusion: 1
+      request: 2048

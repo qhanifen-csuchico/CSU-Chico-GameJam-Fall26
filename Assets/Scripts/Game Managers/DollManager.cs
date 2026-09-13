@@ -118,7 +118,6 @@ public class DollManager : MonoBehaviour
     {
         yield return StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, dumpSpeed));
         StartCoroutine(NewDoll());
-        DollRequestManger.Instance.GenerateNewRequest();
     }
 
     void InstantiateParts(GameObject part)
@@ -134,6 +133,7 @@ public class DollManager : MonoBehaviour
             GameObject head = Instantiate(part, currDoll.transform.position, Quaternion.identity, null);
             currDoll.AttachPart(head.GetComponent<DollPart>());
 
+            currDoll.AddDollDescriptor(head.GetComponent<DollPart>().descriptor);
         }
         else
         {
@@ -162,8 +162,8 @@ public class DollManager : MonoBehaviour
             {
                 dollHeadIndex = 0;
             }
+            headButton.sprite = headSprites[dollHeadIndex];
         }
-        headButton.sprite = headSprites[dollHeadIndex];
     }
 
     public void PrevHead()
@@ -175,6 +175,7 @@ public class DollManager : MonoBehaviour
             {
                 dollHeadIndex = headParts.Count - 1;
             }
+            headButton.sprite = headSprites[dollHeadIndex];
         }
     }
 
@@ -269,6 +270,14 @@ public class DollManager : MonoBehaviour
             {
                 StartCoroutine(DumpDoll(currDoll));
             }
+        }
+    }
+
+    public void DumpDoll()
+    {
+        if (!lockState)
+        {
+            StartCoroutine(DumpDoll(currDoll));
         }
     }
 }

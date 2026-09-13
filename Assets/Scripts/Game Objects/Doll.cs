@@ -13,7 +13,7 @@ public class Doll : MonoBehaviour
     public Transform lLegSocket;
     public Transform rLegSocket;
 
-    private int[] dollDescriptor = new int[10];
+    public int[] dollDescriptor = new int[10];
 
     private DollPart headPart;
     private DollPart l_ArmPart;
@@ -80,9 +80,7 @@ public class Doll : MonoBehaviour
                 part.transform.parent = rLegSocket;
                 part.transform.localPosition = Vector3.zero;
             }
-        }
-
-        AddDollDescriptor(part.descriptor);
+        }        
     }
 
     public void DetachPart(DollPart.DollPartType partType)

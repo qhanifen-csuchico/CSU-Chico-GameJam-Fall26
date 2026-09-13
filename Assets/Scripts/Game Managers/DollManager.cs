@@ -30,7 +30,9 @@ public class DollManager : MonoBehaviour
     public int dollLegIndex = 0;
 
     public GameObject conveyorBelt;
-    
+    public float conveyorSpeed = 2.0f;
+    public float dumpSpeed = 1.0f;
+
     void Awake()
     {
         dollBasePrefab = dollPrefabs.GetType().GetField("basePrefab").GetValue(dollPrefabs) as GameObject;
@@ -60,6 +62,10 @@ public class DollManager : MonoBehaviour
         GameObject newDoll = Instantiate(dollBasePrefab, dollSpawnPosition.position, Quaternion.identity, null);
         currDoll = newDoll.GetComponent<Doll>();
         lockState = true;
+        if (prevDoll)
+        {
+            Destroy(prevDoll.gameObject);
+        }
         yield return StartCoroutine(MoveDollToPosition(currDoll, dollStagingPosition, moveTime));
         lockState = false;
     }
@@ -77,6 +83,20 @@ public class DollManager : MonoBehaviour
             yield return null;
         }
         conveyorBelt.GetComponent<SpriteRenderer>().material.SetFloat("_speed", 0f);
+    }
+
+    public IEnumerator SubmitDoll(Doll doll)
+    {
+        yield return StartCoroutine(MoveDollToPosition(currDoll, dollEndPosition, conveyorSpeed));
+        StartCoroutine(NewDoll());
+        DollRequestManger.Instance.GenerateNewRequest();
+    }
+
+    public IEnumerator DumpDoll(Doll doll)
+    {
+        yield return StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, dumpSpeed));
+        StartCoroutine(NewDoll());
+        DollRequestManger.Instance.GenerateNewRequest();
     }
 
     void InstantiateParts(GameObject part)
@@ -106,6 +126,8 @@ public class DollManager : MonoBehaviour
 
             currDoll.AttachPart(lPartDP);
             currDoll.AttachPart(rPartDP);
+
+            currDoll.AddDollDescriptor(lPartDP.descriptor);
         }
     }
 
@@ -214,11 +236,11 @@ public class DollManager : MonoBehaviour
         {
             if (DollRequestManger.Instance.CompareDollToRequest(currDoll))
             {
-                StartCoroutine(MoveDollToPosition(currDoll, dollEndPosition, 2.0f));
+                StartCoroutine(SubmitDoll(currDoll));
             }
             else
             {
-                StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, 2.0f));
+                StartCoroutine(DumpDoll(currDoll));
             }
         }
     }

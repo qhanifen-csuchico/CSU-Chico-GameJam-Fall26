@@ -14,33 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DollRequestsContainer
   requestLists:
   - dollRequests:
-    - message: Is Hairy
+    - message: Normal
       exclusion: 0
-      request: 4
+      request: 0
     - message: Not Robotic
       exclusion: 1
       request: 2
-    - message: Can Fly
+    - message: Can Swim
       exclusion: 0
-      request: 16
-  - dollRequests:
-    - message: Monovision
-      exclusion: 0
-      request: 0
-    - message: Animial
-      exclusion: 0
-      request: 28
-    - message: Fast
-      exclusion: 0
-      request: 0
-    - message: 
-      exclusion: 0
-      request: 0
-    - message: 
-      exclusion: 0
-      request: 0
-  - dollRequests: []
-  - dollRequests: []
-  - dollRequests: []
-  - dollRequests: []
-  - dollRequests: []
+      request: 8

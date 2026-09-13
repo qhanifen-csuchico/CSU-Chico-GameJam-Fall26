@@ -9,7 +9,8 @@ using NUnit.Framework;
 public class DollRequestManger : MonoBehaviour
 {
     public static DollRequestManger Instance;
-    public TMP_Text textField;
+    public TMP_Text[] textFields;
+    public Color passColor, failColor;
 
     [Serializable]
     public class DollRequestList
@@ -56,39 +57,52 @@ public class DollRequestManger : MonoBehaviour
         
     }
 
-    void GenerateNewRequest()
+    public void GenerateNewRequest()
     {
-        int randomIndex = (int)UnityEngine.Random.Range(0, dollRequests.Count - 1);
-        currRequestList = dollRequests[randomIndex];
-        string buildStr = "";
-        foreach(DollRequest req in currRequestList.dollRequests)
-        {
-            buildStr += "-" + req.message + "\n";
+        int randomIndex = (int)UnityEngine.Random.Range(0, dollRequests.Count);
+        currRequestList = dollRequests[randomIndex];        
+        for(int i=0; i < currRequestList.dollRequests.Length; i++)
+        {            
+            textFields[i].text = currRequestList.dollRequests[i].message;
+            textFields[i].color = Color.white;
         }
-        textField.text = buildStr;
     }
 
     public bool CompareDollToRequest(Doll doll)
     {
         DollPart.DollPartDescriptor dollDesc = doll.GetDescriptor();
         bool passing = true;
-        int index = 0;
-        while (passing && index < currRequestList.dollRequests.Length - 1)
+        Debug.Log($"Doll Requests: {currRequestList.dollRequests.Length}");
+        for (int i = 0; i < currRequestList.dollRequests.Length; i++)
         {
-            foreach (DollRequest req in currRequestList.dollRequests)
+            bool pass = true;
+            DollRequest req = currRequestList.dollRequests[i];
+            // If a the request matches a bitmask type, check if it was supposed to be an exclusion or not
+            if ((dollDesc & req.request) == req.request)
             {
-                if ((dollDesc & req.request) == req.request)
-                {
-                    passing = !req.exclusion;
-                    break;
-                }
-                index++;
+                pass = !req.exclusion;
             }
+            else 
+            {
+                pass = req.exclusion;
+            }
+            if (!pass)
+            {
+                Debug.Log($"Failed at check {req.message}");
+            }
+            else
+            {
+                Debug.Log($"passed at check {req.message}, requirement was {(req.exclusion ? "exclusion" : "required")}");
+            }
+
+            textFields[i].color = pass ? passColor : failColor;
+            passing = pass;
+            
         }
 
         if (!passing)
         {
-            Debug.Log("Failed at {index}");
+            
         }
         return passing;
     }

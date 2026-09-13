@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DollPart
   _isLeft: 0
   partType: 2
-  descriptor: 0
+  descriptor: 8
 --- !u!1 &5768453452180989615
 GameObject:
   m_ObjectHideFlags: 0

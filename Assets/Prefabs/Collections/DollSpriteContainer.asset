@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b25fbd0847732a45b34f92ec19ae9f2, type: 3}
+  m_Name: DollSpriteContainer
+  m_EditorClassIdentifier: Assembly-CSharp::DollSpriteContainer
+  headSprites:
+  - {fileID: -7684115777282552487, guid: e3835ff36c0c6c744926d9919cee0ac7, type: 3}
+  - {fileID: 2670130639694495722, guid: 249929fe93d0a7e40b2cffbf639b364d, type: 3}
+  armSprites:
+  - {fileID: -6123210590712023150, guid: 303014b4861f6ee4c86c26a4817b07d0, type: 3}
+  - {fileID: -4984020879473134763, guid: bbe5dd5d3d9aacd4c8f5f61f2a4da1f1, type: 3}
+  - {fileID: 1522078823709088598, guid: fef687aa34c971444b5742ce5ce0e85b, type: 3}
+  - {fileID: -6885537170874505318, guid: 26bd98144070e0041913f370e5912165, type: 3}
+  legSprites:
+  - {fileID: -2728387670071626093, guid: fb99406bb371c6f4d9a899aeafb2b267, type: 3}
+  - {fileID: 5170584158529839902, guid: c2b073724e8c0d44c8106bfdf42fdebf, type: 3}
+  - {fileID: -6913511029354307202, guid: 0195417e34dd3ab43b1421e2b071a0ab, type: 3}

@@ -4,17 +4,28 @@ using System.Collections.Generic;
 using Unity.Collections.Tests.CoreCLR.TestJobs;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DollManager : MonoBehaviour
 {
     private bool lockState = false;
 
-    public ScriptableObject dollPrefabs;
+    public ScriptableObject dollPrefabs;    
     private GameObject dollBasePrefab;
     private List<GameObject> headParts;
     private List<GameObject> armParts;
     private List<GameObject> legParts;
-    
+
+    public ScriptableObject dollSprites;
+    private List<Sprite> headSprites;
+    private List<Sprite> armSprites;
+    private List<Sprite> legSprites;
+
+    [Header("UI")]
+    public Image headButton;
+    public Image armButton;
+    public Image legButton;
+
 
     public Transform dollStagingPosition;
     public Transform dollSpawnPosition;
@@ -35,15 +46,26 @@ public class DollManager : MonoBehaviour
 
     void Awake()
     {
+        // Get Doll Parts Prefabs from Collection
         dollBasePrefab = dollPrefabs.GetType().GetField("basePrefab").GetValue(dollPrefabs) as GameObject;
         headParts = dollPrefabs.GetType().GetField("headPrefabs").GetValue(dollPrefabs) as List<GameObject>;
         armParts = dollPrefabs.GetType().GetField("armPrefabs").GetValue(dollPrefabs) as List<GameObject>;
         legParts = dollPrefabs.GetType().GetField("legPrefabs").GetValue(dollPrefabs) as List<GameObject>;
+
+        // Get Doll Part UI Sprites from Collection
+        headSprites = dollSprites.GetType().GetField("headSprites").GetValue(dollSprites) as List<Sprite>;
+        armSprites = dollSprites.GetType().GetField("armSprites").GetValue(dollSprites) as List<Sprite>;
+        legSprites = dollSprites.GetType().GetField("legSprites").GetValue(dollSprites) as List<Sprite>;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        headButton.sprite = headSprites[dollHeadIndex];
+        armButton.sprite = armSprites[dollArmIndex];
+        legButton.sprite = legSprites[dollLegIndex];
+
+        // Initialize gameplay loop
         StartCoroutine(NewDoll());
     }
 
@@ -141,6 +163,7 @@ public class DollManager : MonoBehaviour
                 dollHeadIndex = 0;
             }
         }
+        headButton.sprite = headSprites[dollHeadIndex];
     }
 
     public void PrevHead()
@@ -173,6 +196,7 @@ public class DollManager : MonoBehaviour
             {
                 dollArmIndex = 0;
             }
+            armButton.sprite = armSprites[dollArmIndex];
         }
     }
 
@@ -185,6 +209,7 @@ public class DollManager : MonoBehaviour
             {
                 dollArmIndex = armParts.Count - 1;
             }
+            armButton.sprite = armSprites[dollArmIndex];
         }
     }
 
@@ -206,6 +231,7 @@ public class DollManager : MonoBehaviour
             {
                 dollLegIndex = 0;
             }
+            legButton.sprite = legSprites[dollLegIndex];
         }
     }
 
@@ -218,6 +244,7 @@ public class DollManager : MonoBehaviour
             {
                 dollLegIndex = legParts.Count - 1;
             }
+            legButton.sprite = legSprites[dollLegIndex];
         }
     }
 

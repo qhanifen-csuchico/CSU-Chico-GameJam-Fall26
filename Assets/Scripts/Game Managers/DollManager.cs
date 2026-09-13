@@ -29,6 +29,7 @@ public class DollManager : MonoBehaviour
     public int dollArmIndex = 0;
     public int dollLegIndex = 0;
 
+    public GameObject conveyorBelt;
     
     void Awake()
     {
@@ -68,12 +69,14 @@ public class DollManager : MonoBehaviour
         Vector3 startPos = doll.transform.position;
         float elapsedTime = 0.0f;
 
+        conveyorBelt.GetComponent<SpriteRenderer>().material.SetFloat("_speed", 0.2f);
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             doll.transform.position = Vector3.Lerp(startPos, pos.position, elapsedTime/time);
             yield return null;
         }
+        conveyorBelt.GetComponent<SpriteRenderer>().material.SetFloat("_speed", 0f);
     }
 
     void InstantiateParts(GameObject part)

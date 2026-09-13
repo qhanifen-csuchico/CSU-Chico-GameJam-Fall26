@@ -60,6 +60,12 @@ public class DollRequestManger : MonoBehaviour
     {
         int randomIndex = (int)UnityEngine.Random.Range(0, dollRequests.Count - 1);
         currRequestList = dollRequests[randomIndex];
+        string buildStr = "";
+        foreach(DollRequest req in currRequestList.dollRequests)
+        {
+            buildStr += "-" + req.message + "\n";
+        }
+        textField.text = buildStr;
     }
 
     public bool CompareDollToRequest(Doll doll)

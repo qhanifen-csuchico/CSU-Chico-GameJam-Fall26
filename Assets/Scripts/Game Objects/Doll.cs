@@ -45,34 +45,22 @@ public class Doll : MonoBehaviour
 
     public void AttachPart(DollPart part)
     {
-        if(part.partType == DollPartType.Head)
-        {
-            if(headPart)
-            {
-                Destroy(headPart.gameObject);
-            }
+        if (part.partType == DollPartType.Head)
+        {            
             headPart = part;
             part.transform.parent = headSocket;
-            part.transform.localPosition = Vector3.zero;
+            part.transform.localPosition = Vector3.zero;            
         }
         else if (part.partType == DollPartType.Arm)
         {
             if (part.isLeft)
-            {
-                if (l_ArmPart)
-                {
-                    Destroy(l_ArmPart.gameObject);
-                }
+            {                
                 l_ArmPart = part;
                 part.transform.parent = lArmSocket;
                 part.transform.localPosition = Vector3.zero;
             }
             else
-            {
-                if (r_ArmPart)
-                {
-                    Destroy(r_ArmPart.gameObject);
-                }
+            {                
                 r_ArmPart = part;
                 part.transform.parent = rArmSocket;
                 part.transform.localPosition = Vector3.zero;
@@ -81,26 +69,20 @@ public class Doll : MonoBehaviour
         else if (part.partType == DollPartType.Leg)
         {
             if (part.isLeft)
-            {
-                if (l_LegPart)
-                {
-                    Destroy(l_LegPart.gameObject);
-                }
+            {                
                 l_LegPart = part;
                 part.transform.parent = lLegSocket;
                 part.transform.localPosition = Vector3.zero;
             }
             else
-            {
-                if (r_LegPart)
-                {
-                    Destroy(r_LegPart.gameObject);
-                }
+            {                
                 r_LegPart = part;
                 part.transform.parent = rLegSocket;
                 part.transform.localPosition = Vector3.zero;
             }
         }
+
+        AddDollDescriptor(part.descriptor);
     }
 
     public void DetachPart(DollPart.DollPartType partType)
@@ -108,15 +90,29 @@ public class Doll : MonoBehaviour
         switch (partType)
         {
             case DollPartType.Head:
-                Destroy(headPart);
+                if (headPart)
+                {
+                    SubtractDollDescriptor(headPart.descriptor);
+                    Destroy(headPart.gameObject);
+                }
                 break;
             case DollPartType.Arm:
-                Destroy(l_ArmPart);
-                Destroy(r_ArmPart);
+                if (l_ArmPart)
+                {
+                    SubtractDollDescriptor(l_ArmPart.descriptor);
+                    Destroy(l_ArmPart.gameObject);
+                    Destroy(r_ArmPart.gameObject);
+                }
                 break;
             case DollPartType.Leg:
-                Destroy(l_LegPart);
-                Destroy(r_LegPart);
+                if (l_LegPart)
+                {
+                    SubtractDollDescriptor(l_LegPart.descriptor);
+                    Destroy(l_LegPart.gameObject);
+                    Destroy(r_LegPart.gameObject);
+                }
+                break;
+            default:
                 break;
         }
     }
@@ -161,5 +157,21 @@ public class Doll : MonoBehaviour
             }
             index++;
         }
+    }
+
+    // Create a bitmask by checking if any of the stored counts are greater than 1
+    public DollPartDescriptor GetDescriptor()
+    {
+        DollPartDescriptor descriptor = 0;
+        int index = 0;
+        foreach(int val in dollDescriptor)
+        {
+            if(val > 0)
+            {
+                descriptor |=  (DollPartDescriptor)(1 << index);
+            }
+            index++;
+        }
+        return descriptor;
     }
 }

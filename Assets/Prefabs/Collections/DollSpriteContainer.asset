@@ -15,6 +15,7 @@ MonoBehaviour:
   headSprites:
   - {fileID: -7684115777282552487, guid: e3835ff36c0c6c744926d9919cee0ac7, type: 3}
   - {fileID: 2670130639694495722, guid: 249929fe93d0a7e40b2cffbf639b364d, type: 3}
+  - {fileID: -8064927061107633385, guid: 545f0923a98984245b16eef88f3e9968, type: 3}
   armSprites:
   - {fileID: -6123210590712023150, guid: 303014b4861f6ee4c86c26a4817b07d0, type: 3}
   - {fileID: -4984020879473134763, guid: bbe5dd5d3d9aacd4c8f5f61f2a4da1f1, type: 3}
@@ -24,3 +25,5 @@ MonoBehaviour:
   - {fileID: -2728387670071626093, guid: fb99406bb371c6f4d9a899aeafb2b267, type: 3}
   - {fileID: 5170584158529839902, guid: c2b073724e8c0d44c8106bfdf42fdebf, type: 3}
   - {fileID: -6913511029354307202, guid: 0195417e34dd3ab43b1421e2b071a0ab, type: 3}
+  - {fileID: -6913511029354307202, guid: 0195417e34dd3ab43b1421e2b071a0ab, type: 3}
+  - {fileID: -6331200489970632461, guid: db55a346e33f7614692ce62b263881f1, type: 3}

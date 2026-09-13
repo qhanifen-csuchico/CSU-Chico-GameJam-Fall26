@@ -59,11 +59,11 @@ public class DollManager : MonoBehaviour
         GameObject newDoll = Instantiate(dollBasePrefab, dollSpawnPosition.position, Quaternion.identity, null);
         currDoll = newDoll.GetComponent<Doll>();
         lockState = true;
-        yield return StartCoroutine(MoveDollToPosition(currDoll, moveTime));
+        yield return StartCoroutine(MoveDollToPosition(currDoll, dollStagingPosition, moveTime));
         lockState = false;
     }
 
-    IEnumerator MoveDollToPosition(Doll doll, float time)
+    IEnumerator MoveDollToPosition(Doll doll, Transform pos, float time)
     {
         Vector3 startPos = doll.transform.position;
         float elapsedTime = 0.0f;
@@ -71,7 +71,7 @@ public class DollManager : MonoBehaviour
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
-            doll.transform.position = Vector3.Lerp(startPos, dollStagingPosition.position, elapsedTime/time);
+            doll.transform.position = Vector3.Lerp(startPos, pos.position, elapsedTime/time);
             yield return null;
         }
     }
@@ -134,6 +134,7 @@ public class DollManager : MonoBehaviour
     {
         if(!lockState)
         {
+            currDoll.DetachPart(DollPart.DollPartType.Head);
             InstantiateParts(headParts[dollHeadIndex]);
         }
     }
@@ -199,7 +200,21 @@ public class DollManager : MonoBehaviour
     {
         if (!lockState)
         {
+            currDoll.DetachPart(DollPart.DollPartType.Leg);
             InstantiateParts(legParts[dollLegIndex]);
         }
+    }
+
+    public void SubmitDoll()
+    {
+        if (DollRequestManger.Instance.CompareDollToRequest(currDoll))
+        {
+            StartCoroutine(MoveDollToPosition(currDoll, dollEndPosition, 2.0f));
+        }
+        else
+        {
+            StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, 2.0f));
+        }
+        
     }
 }

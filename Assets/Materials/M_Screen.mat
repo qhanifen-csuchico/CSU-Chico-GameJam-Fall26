@@ -41,13 +41,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _lineThickness: 0.77
+    - _lineThickness: 0.41
+    - _scrollSpeed: 0.2
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _caratColor: {r: 0, g: 0, b: 0, a: 1}
     - _lineDensity: {r: 0, g: 25, b: 0, a: 0}
-    - _normalColor: {r: 0.43329477, g: 0.8584906, b: 0.6674281, a: 1}
-    - _stripesColor: {r: 0.30215383, g: 0.6603774, b: 0.47163594, a: 1}
+    - _normalColor: {r: 0.05339978, g: 0.754717, b: 0.5978047, a: 1}
+    - _stripesColor: {r: 0.30196077, g: 0.65882355, b: 0.649054, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5273201024021877467

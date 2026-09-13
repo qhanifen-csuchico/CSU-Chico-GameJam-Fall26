@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 704443efcb5f9cd4cb35b664a6c94247
+guid: 2bb2eff49394dd44599e5594e6b52a10
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4783133577000962755
-    second: normal_head_0
+      213: -93825544443129737
+    second: Factory_GameJam2026_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,23 +115,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: normal_head_0
+      name: Factory_GameJam2026_0
       rect:
         serializedVersion: 2
-        x: 143
-        y: 577
-        width: 1280
-        height: 996
-      alignment: 9
-      pivot: {x: 0.46605226, y: 0.059470855}
-      border: {x: 51, y: 0, z: 131, w: 0}
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d353d959a55ee9db0800000000000000
-      internalID: -4783133577000962755
+      spriteID: 7701c981a2aa2bef0800000000000000
+      internalID: -93825544443129737
       vertices: []
       indices: 
       edges: []
@@ -140,7 +140,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7d0b1f184d82a8f48a5b692df641b8eb
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -150,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      normal_head_0: -4783133577000962755
+      Factory_GameJam2026_0: -93825544443129737
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

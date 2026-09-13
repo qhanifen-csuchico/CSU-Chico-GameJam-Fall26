@@ -207,14 +207,16 @@ public class DollManager : MonoBehaviour
 
     public void SubmitDoll()
     {
-        if (DollRequestManger.Instance.CompareDollToRequest(currDoll))
+        if (!lockState)
         {
-            StartCoroutine(MoveDollToPosition(currDoll, dollEndPosition, 2.0f));
+            if (DollRequestManger.Instance.CompareDollToRequest(currDoll))
+            {
+                StartCoroutine(MoveDollToPosition(currDoll, dollEndPosition, 2.0f));
+            }
+            else
+            {
+                StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, 2.0f));
+            }
         }
-        else
-        {
-            StartCoroutine(MoveDollToPosition(currDoll, dollDumpPosition, 2.0f));
-        }
-        
     }
 }
